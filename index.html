@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
+<title>OZmosis Consulting · Executive Growth Coaching & Organizational Development</title>
+<meta name="description" content="OZmosis Consulting guides leaders, executives, and organizations from where they are to where they're destined to be. Transformative coaching, on-site consulting, and speaking engagements." />
+<meta name="theme-color" content="#0D0A1A" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0D0A1A;
+    --bg-2: #130E24;
+    --bg-3: #1A1330;
+    --line: rgba(255,255,255,0.07);
+    --line-strong: rgba(255,255,255,0.14);
+    --text: #EDE8FF;
+    --text-mute: #9A93B8;
+    --text-dim: #6A6485;
+    --gold: #C8993A;
+    --gold-bright: #E8B84B;
+    --gold-soft: rgba(200,153,58,0.12);
+    --gold-glow: rgba(200,153,58,0.20);
+    --violet: #7C5CB8;
+    --violet-deep: #5B3D99;
+    --violet-soft: rgba(124,92,184,0.12);
+    --surface: rgba(255,255,255,0.03);
+    --surface-2: rgba(255,255,255,0.05);
+    --surface-hover: rgba(255,255,255,0.07);
+    --card: rgba(255,255,255,0.03);
+    --card-border: rgba(255,255,255,0.07);
+    --nav-bg: rgba(13,10,26,0.70);
+    --nav-bg-scrolled: rgba(13,10,26,0.96);
+    --grad-gold: linear-gradient(135deg, #C8993A 0%, #E8B84B 50%, #C8993A 100%);
+    --grad-hero: linear-gradient(135deg, #7C5CB8 0%, #C8993A 100%);
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  header.nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    height: 68px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  header.nav.scrolled {
+    background: var(--nav-bg-scrolled);
+    border-bottom-color: var(--line);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+  .logo-oz {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, #7C5CB8, #C8993A);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.03em;
+  }
+  .brand-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .brand-name span { color: var(--gold-bright); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-mute);
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface-hover); }
+
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    background: var(--grad-gold);
+    color: #0D0A1A;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--line-strong);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .btn-ghost:hover { background: var(--surface-hover); border-color: var(--gold); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: var(--surface-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    width: 40px; height: 40px;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 18px; height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    .nav-links, .nav-cta .btn-ghost { display: none; }
+    .nav-toggle { display: flex; }
+    .nav-cta { display: none; }
+    header.nav.mobile-open .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--line);
+      padding: 1rem;
+      gap: 0.25rem;
+    }
+    header.nav.mobile-open .nav-cta {
+      display: flex;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem;
+      background: var(--bg-2);
+      border-top: 1px solid var(--line);
+    }
+    header.nav.mobile-open .nav-cta a { flex: 1; justify-content: center; }
+  }
+
+  /* ───── UTILITIES ───── */
+  .container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .section {
+    padding: clamp(5rem, 10vw, 8rem) 0;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px; height: 2px;
+    background: var(--gold-bright);
+    border-radius: 2px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--gold-bright);
+  }
+
+  .section-sub {
+    font-size: 1.0625rem;
+    color: var(--text-mute);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: var(--line);
+  }
+
+  /* ───── HERO ───── */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: calc(68px + 4rem) clamp(1.25rem, 4vw, 2.5rem) 5rem;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .hero-halo {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse at 50% 30%, rgba(124,92,184,0.28) 0%, rgba(200,153,58,0.12) 40%, transparent 70%);
+    filter: blur(1px);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at 50% 40%, black 20%, transparent 70%);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    border: 1px solid rgba(200,153,58,0.35);
+    background: rgba(200,153,58,0.08);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    position: relative;
+  }
+  .hero-badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--gold-bright);
+    animation: pulse-dot 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    max-width: 900px;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  .hero-title em {
+    font-style: italic;
+    background: var(--grad-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-mute);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .hero-actions .btn-primary { font-size: 1rem; padding: 0.85rem 2rem; }
+  .hero-actions .btn-ghost { font-size: 1rem; padding: 0.85rem 2rem; }
+
+  .hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    position: relative;
+  }
+  .hero-stat {
+    text-align: center;
+    padding: 1.25rem 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    backdrop-filter: blur(8px);
+    min-width: 140px;
+  }
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    line-height: 1;
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-mute);
+    margin-top: 0.25rem;
+    letter-spacing: 0.04em;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: fadeFloat 3s ease-in-out infinite;
+  }
+  .scroll-hint svg { opacity: 0.4; }
+  @keyframes fadeFloat {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(4px); }
+  }
+
+  /* ───── PHILOSOPHY ───── */
+  .philosophy {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .philosophy-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .philosophy-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  .philosophy-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--text);
+    position: relative;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--gold);
+  }
+  .philosophy-quote .attribution {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-style: normal;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 1.25rem;
+  }
+  .philosophy-body p {
+    color: var(--text-mute);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    font-size: 1.0625rem;
+  }
+  .philosophy-body p:last-child { margin-bottom: 0; }
+  .philosophy-body strong { color: var(--text); font-weight: 600; }
+
+  /* ───── SERVICES ───── */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--grad-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .service-card:hover {
+    border-color: rgba(200,153,58,0.3);
+    background: rgba(200,153,58,0.04);
+    transform: translateY(-3px);
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+  .service-icon-a { background: rgba(200,153,58,0.12); }
+  .service-icon-b { background: rgba(124,92,184,0.14); }
+  .service-icon-c { background: rgba(200,153,58,0.08); border: 1px solid rgba(200,153,58,0.2); }
+  .service-icon-d { background: rgba(124,92,184,0.08); border: 1px solid rgba(124,92,184,0.2); }
+
+  .service-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .service-card p {
+    color: var(--text-mute);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: 1.5rem;
+  }
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    letter-spacing: 0.02em;
+    transition: gap 0.2s;
+  }
+  .service-card:hover .service-link { gap: 0.6rem; }
+
+  /* ───── OZMOSIS FLAGSHIP ───── */
+  .flagship {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .flagship-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .flagship-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  .flagship-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 6px;
+    background: rgba(124,92,184,0.14);
+    border: 1px solid rgba(124,92,184,0.3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B89FE8;
+    margin-bottom: 1rem;
+  }
+  .flagship-steps {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .flagship-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--gold-soft);
+    border: 1px solid rgba(200,153,58,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    flex-shrink: 0;
+  }
+  .step-content h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .step-content p {
+    font-size: 0.875rem;
+    color: var(--text-mute);
+    line-height: 1.6;
+  }
+  .flagship-visual {
+    position: relative;
+  }
+  .flagship-card-big {
+    background: linear-gradient(135deg, rgba(124,92,184,0.12) 0%, rgba(200,153,58,0.08) 100%);
+    border: 1px solid rgba(200,153,58,0.2);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .flagship-card-big::after {
+    content: 'OZ';
+    position: absolute;
+    right: -0.5rem;
+    bottom: -1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9rem;
+    font-weight: 700;
+    color: rgba(200,153,58,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  .flagship-card-big h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+  .flagship-card-big p {
+    color: var(--text-mute);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .flagship-tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    display: inline-flex;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--line-strong);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-mute);
+  }
+
+  /* ───── AUDIENCE ───── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 768px) {
+    .audience-grid { grid-template-columns: 1fr; }
+  }
+  .audience-card {
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    background: var(--card);
+    transition: border-color 0.25s;
+  }
+  .audience-card:hover { border-color: rgba(200,153,58,0.25); }
+  .audience-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+  .audience-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .audience-card p {
+    font-size: 0.875rem;
+    color: var(--text-mute);
+    line-height: 1.65;
+  }
+
+  /* ───── IMPACT STRIP ───── */
+  .impact-strip {
+    background: linear-gradient(135deg, rgba(124,92,184,0.15) 0%, rgba(200,153,58,0.1) 100%);
+    border-top: 1px solid rgba(200,153,58,0.15);
+    border-bottom: 1px solid rgba(200,153,58,0.15);
+    padding: 4rem 0;
+  }
+  .impact-strip-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .impact-strip-inner { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .impact-strip-inner { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  }
+  .impact-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+    background: var(--grad-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .impact-label {
+    font-size: 0.8rem;
+    color: var(--text-mute);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ───── PODCAST ───── */
+  .podcast {
+    background: var(--bg-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .podcast-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .podcast-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  .podcast-episodes { display: flex; flex-direction: column; gap: 1rem; }
+  .episode-card {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--card-border);
+    background: var(--card);
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+  .episode-card:hover {
+    border-color: rgba(200,153,58,0.25);
+    background: var(--surface-hover);
+  }
+  .episode-num {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: var(--gold-soft);
+    border: 1px solid rgba(200,153,58,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    flex-shrink: 0;
+  }
+  .episode-meta { flex: 1; }
+  .episode-meta h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .episode-meta p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  /* ───── CTA ───── */
+  .cta-section {
+    text-align: center;
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(124,92,184,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-section .section-title { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .cta-section .section-sub { margin-left: auto; margin-right: auto; text-align: center; }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .cta-actions .btn-primary { font-size: 1.05rem; padding: 1rem 2.25rem; }
+  .cta-actions .btn-ghost { font-size: 1.05rem; padding: 1rem 2.25rem; }
+
+  /* ───── FOOTER ───── */
+  footer {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 3rem 0;
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  .footer-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text-mute);
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .footer-links a:hover { border-color: var(--gold); color: var(--gold-bright); background: var(--gold-soft); }
+
+  /* ───── ANIMATIONS ───── */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="site-nav">
+  <a class="brand" href="#home">
+    <div class="logo-oz">OZ</div>
+    <span class="brand-name">OZmosis <span>Consulting</span></span>
+  </a>
+  <nav aria-label="Primary">
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#ozresidency">OZreZidency</a></li>
+      <li><a href="#who-we-serve">Who We Serve</a></li>
+      <li><a href="#podcast">Podcast</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="nav-cta">
+    <a class="btn-ghost" href="#services">Our Work</a>
+    <a class="btn-primary" href="https://calendly.com" target="_blank" rel="noopener">Book a Call</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-halo"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    Executive Growth Coaching &amp; Org Development
+  </div>
+
+  <h1 class="hero-title reveal">
+    From where you are<br />to where you're
+    <em>destined to be.</em>
+  </h1>
+
+  <p class="hero-sub reveal reveal-delay-1">
+    OZmosis Consulting partners with leaders and organizations who are ready to grow — through transformative coaching, on-site consulting, and speaking that drives lasting change.
+  </p>
+
+  <div class="hero-actions reveal reveal-delay-2">
+    <a class="btn-primary" href="https://calendly.com" target="_blank" rel="noopener">Book a Discovery Call</a>
+    <a class="btn-ghost" href="#services">Explore Services</a>
+  </div>
+
+  <div class="hero-stats reveal reveal-delay-3">
+    <div class="hero-stat">
+      <span class="hero-stat-num">4</span>
+      <div class="hero-stat-label">Core Service Programs</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3</span>
+      <div class="hero-stat-label">Sectors Served</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">100%</span>
+      <div class="hero-stat-label">On-Site &amp; Remote</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Scroll
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy section" id="philosophy">
+  <div class="container">
+    <div class="philosophy-inner">
+      <div>
+        <p class="philosophy-quote">
+          "The infectious joy one feels when compassion meets passion."
+          <span class="attribution">— The Power of OZmosis</span>
+        </p>
+      </div>
+      <div class="philosophy-body reveal">
+        <p>
+          At OZmosis Consulting, we believe <strong>growth isn't accidental — it's engineered.</strong> The organizations that win are the ones who actively invest in the development of their people, their culture, and their leadership pipeline.
+        </p>
+        <p>
+          Our work sits at the intersection of compassion and strategy. We don't arrive with a script. We listen, diagnose, and build a path that's specific to where you are and honest about what it takes to get where you want to be.
+        </p>
+        <p>
+          The result? Leaders who lead with conviction. Teams that function with clarity. Organizations that grow with purpose.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="eyebrow">What We Do</div>
+    <h2 class="section-title">Programs built for <em>real transformation</em></h2>
+    <p class="section-sub">Four integrated service lines that meet you where you are and move you toward where you're headed.</p>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon service-icon-a">🌱</div>
+        <h3>Transformative Growth Coaching</h3>
+        <p>A tiered coaching program designed to evolve your professional presence, sharpen your leadership instincts, and close the gap between who you are and who your role demands. Structured for executives, managers, and high-potential talent.</p>
+        <span class="service-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon service-icon-b">🏢</div>
+        <h3>OZreZidency Program</h3>
+        <p>On-site consulting embedded inside your organization. We assess performance, identify development gaps, and build an actionable plan — in person, in context, with full visibility into your team dynamics and operational reality.</p>
+        <span class="service-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon service-icon-c">📢</div>
+        <h3>Brand Ambassadorship</h3>
+        <p>We amplify your mission across our platforms, networks, and channels — connecting your organization to audiences, partnerships, and opportunities that accelerate your reach and reinforce your values in the market.</p>
+        <span class="service-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon service-icon-d">🎤</div>
+        <h3>Speaking Engagements</h3>
+        <p>High-impact keynotes, workshops, and facilitated sessions for leadership teams, company all-hands, educational institutions, and community organizations. Presentations that move people from conversation to action.</p>
+        <span class="service-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLAGSHIP: OZRESIDENCY -->
+<section class="flagship section" id="ozresidency">
+  <div class="container">
+    <div class="flagship-inner">
+      <div>
+        <div class="flagship-badge">Flagship Program</div>
+        <h2 class="section-title">The <em>OZreZidency</em></h2>
+        <p class="section-sub" style="margin-bottom:0;">Our most immersive engagement. We come to you, work alongside your team, and leave you with a concrete roadmap for growth — not a deck, a plan.</p>
+        <div class="flagship-steps">
+          <div class="flagship-step reveal">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Discovery &amp; Listening</h4>
+              <p>We begin on-site, observing team dynamics, interviewing stakeholders, and mapping the actual state — not the org chart version.</p>
+            </div>
+          </div>
+          <div class="flagship-step reveal reveal-delay-1">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Assessment &amp; Gap Analysis</h4>
+              <p>Performance gaps, culture friction, and leadership readiness are surfaced with precision. No assumptions, no consultancy-speak.</p>
+            </div>
+          </div>
+          <div class="flagship-step reveal reveal-delay-2">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Roadmap &amp; Development Plan</h4>
+              <p>A custom action plan — prioritized, measurable, and built for your people to actually execute.</p>
+            </div>
+          </div>
+          <div class="flagship-step reveal reveal-delay-3">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Ongoing Partnership</h4>
+              <p>Implementation support, coaching touchpoints, and accountability check-ins to ensure momentum holds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flagship-visual reveal reveal-delay-1">
+        <div class="flagship-card-big">
+          <h3>Built for organizations ready to stop talking about change and start making it.</h3>
+          <p>The OZreZidency is ideal for companies at an inflection point — post-growth, post-merger, culture recalibration, or leadership transition. If the org chart shifted but the behaviors haven't, this is where we start.</p>
+          <div class="flagship-tag-row">
+            <span class="tag">Leadership transition</span>
+            <span class="tag">Culture alignment</span>
+            <span class="tag">High-growth teams</span>
+            <span class="tag">Post-merger integration</span>
+            <span class="tag">Performance uplift</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STRIP -->
+<div class="impact-strip" aria-hidden="false">
+  <div class="container">
+    <div class="impact-strip-inner">
+      <div>
+        <span class="impact-num">Leaders</span>
+        <div class="impact-label">coached to next-level impact</div>
+      </div>
+      <div>
+        <span class="impact-num">Orgs</span>
+        <div class="impact-label">transformed through residency</div>
+      </div>
+      <div>
+        <span class="impact-num">Teams</span>
+        <div class="impact-label">aligned through culture work</div>
+      </div>
+      <div>
+        <span class="impact-num">Stages</span>
+        <div class="impact-label">spoken from coast to coast</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO WE SERVE -->
+<section class="section" id="who-we-serve">
+  <div class="container">
+    <div class="eyebrow">Who We Serve</div>
+    <h2 class="section-title">For leaders with <em>budget, authority, and ambition</em></h2>
+    <p class="section-sub">We work best with organizations where decision-makers are bought in from day one. Transformation doesn't happen by committee — it happens when leadership commits.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card reveal">
+        <div class="audience-icon">👔</div>
+        <h3>Executives &amp; C-Suite</h3>
+        <p>CEOs, COOs, CHROs and division heads who need a thinking partner — someone to hold the mirror and help them lead through growth, change, or complexity.</p>
+      </div>
+      <div class="audience-card reveal reveal-delay-1">
+        <div class="audience-icon">🏛️</div>
+        <h3>Community &amp; Nonprofit Leaders</h3>
+        <p>Directors and board-level leaders of mission-driven organizations who want to sharpen their team, increase impact, and communicate their vision more powerfully.</p>
+      </div>
+      <div class="audience-card reveal reveal-delay-2">
+        <div class="audience-icon">📈</div>
+        <h3>Growth-Stage Companies</h3>
+        <p>Teams that scaled fast and now need the culture, leadership infrastructure, and development programs to match their ambitions without burning out their people.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PODCAST -->
+<section class="podcast section" id="podcast">
+  <div class="container">
+    <div class="podcast-inner">
+      <div>
+        <div class="eyebrow">The Podcast</div>
+        <h2 class="section-title">Ideas worth <em>acting on</em></h2>
+        <p style="color:var(--text-mute); font-size:1rem; line-height:1.75; margin-bottom:1.5rem;">
+          Conversations at the intersection of leadership, organizational transformation, and human-centered business. New episodes on Buzzsprout.
+        </p>
+        <a class="btn-ghost" href="https://www.buzzsprout.com" target="_blank" rel="noopener">Listen on Buzzsprout</a>
+      </div>
+      <div class="podcast-episodes">
+        <div class="episode-card">
+          <div class="episode-num">EP</div>
+          <div class="episode-meta">
+            <h4>Human Rights in the Supply Chain: What Leaders Must Know</h4>
+            <p>Ethics, accountability, and what responsible sourcing actually demands of decision-makers.</p>
+          </div>
+        </div>
+        <div class="episode-card">
+          <div class="episode-num">EP</div>
+          <div class="episode-meta">
+            <h4>Strategic Networking &amp; Building Social Capital</h4>
+            <p>How to build the relationships that open doors — and why most people approach networking backwards.</p>
+          </div>
+        </div>
+        <div class="episode-card">
+          <div class="episode-num">EP</div>
+          <div class="episode-meta">
+            <h4>Digital Transformation Is a People Problem</h4>
+            <p>Technology is the easy part. Culture, buy-in, and leadership readiness are where transformations succeed or die.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="eyebrow" style="justify-content:center;">Let's Talk</div>
+    <h2 class="section-title reveal">
+      Ready to move from <em>intention to action?</em>
+    </h2>
+    <p class="section-sub reveal reveal-delay-1">
+      Book a no-pressure discovery call. We'll listen to where you are, share what we've seen work, and tell you honestly if we're the right fit.
+    </p>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a class="btn-primary" href="https://calendly.com" target="_blank" rel="noopener">
+        Book a Discovery Call
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn-ghost" href="https://www.linkedin.com/in/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a class="footer-brand" href="#home">
+        <div class="logo-oz" style="width:32px;height:32px;font-size:1rem;border-radius:8px;">OZ</div>
+        <span class="brand-name" style="font-size:0.95rem;">OZmosis <span>Consulting</span></span>
+      </a>
+      <div class="footer-copy">© 2026 OZmosis Consulting. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+        <a href="https://linktr.ee" target="_blank" rel="noopener" aria-label="Linktree">⌘</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile nav toggle
+  const toggle = document.getElementById('nav-toggle');
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('mobile-open');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  // Close on nav link click
+  nav.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('mobile-open');
+      toggle.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('visible'));
+  }
+</script>
+</body>
+</html>
