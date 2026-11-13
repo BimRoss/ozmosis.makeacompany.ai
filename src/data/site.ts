@@ -1,0 +1,972 @@
+export const SITE_URL = "https://www.powerofozmosis.com";
+export const SITE_NAME = "POWER of OZmosis";
+export const SITE_TITLE = "POWER of OZmosis | Coaching, Consulting & Speaking — John Osberg";
+
+export const HERO_LABEL = "coaching · consulting · speaking";
+
+export const HERO_SUMMARY =
+  "The infectious joy one feels when compassion meets passion. John Osberg guides and empowers people, community organizations, and businesses, from where they are to where they are destined to be.";
+
+export const LINK_PREVIEW_DESCRIPTION =
+  "POWER of OZmosis — John Osberg's coaching and consulting practice. Growth coaching, on-site development, brand championing, and speaking that take people and organizations from where they are to where they are destined to be.";
+
+// Social/link-unfurl description (LinkedIn Featured, Slack, iMessage). Front-
+// loads the brand idea so it survives LinkedIn's ~2-line truncation.
+export const OG_DESCRIPTION =
+  "The infectious joy when compassion meets passion. Coaching, consulting, and speaking that move people and organizations from where they are to where they are destined to be.";
+
+export const PUBLIC_EMAIL = "john@brandlete.com";
+
+// logo.dev serves real company logos by domain. The publishable key (pk_) is
+// meant for client-side use. fallback=404 makes unknown domains 404 so each
+// component's onError swaps to its clean monogram tile instead of a generic
+// logo.dev placeholder.
+const LOGO_DEV_KEY = "pk_W-hvspybR8OzNFwPDlYRSg";
+export function logoDev(domain: string): string {
+  return `https://img.logo.dev/${domain}?token=${LOGO_DEV_KEY}&size=128&format=png&retina=true&fallback=404`;
+}
+
+export type StatIconKey =
+  | "impact"
+  | "capital"
+  | "nonprofit"
+  | "growth"
+  | "miles"
+  | "impressions"
+  | "network"
+  | "reach"
+  | "countless"
+  | "golf"
+  | "trail"
+  | "medal"
+  | "timer"
+  | "clock";
+
+export const stats: { value: string; label: string; icon: StatIconKey }[] = [
+  { value: "$15M+", label: "financial impact", icon: "impact" },
+  { value: "$3.1M+", label: "raised across ventures", icon: "capital" },
+  { value: "$2.2M+", label: "501c3 funds raised", icon: "nonprofit" },
+  { value: "16+ yrs", label: "growth & partnerships", icon: "growth" },
+  { value: "25K+", label: "miles run", icon: "miles" },
+  { value: "35M+", label: "LinkedIn impressions", icon: "impressions" },
+  { value: "20M+", label: "network reach", icon: "reach" },
+  { value: "30K+", label: "audience & network", icon: "network" },
+];
+
+// Experience — mirrors John's LinkedIn: same roles, same order (most recent
+// first), same date ranges. Each role carries a one-line blurb drawn from
+// John's LinkedIn bullets; the Experience list renders title + period only
+// when blurb is empty.
+// Each role carries a `logo` (logo.dev by domain, or "" to go straight to the
+// monogram) plus a `mark`/`accent` monogram fallback, rendered by <RoleLogo>.
+export type Role = {
+  org: string;
+  title: string;
+  period: string;
+  blurb: string;
+  logo: string;
+  mark: string;
+  accent: string;
+  // Company site the logo links to. Omit for orgs with no public site so
+  // <RoleLogo> renders the mark without a link.
+  url?: string;
+  // "advisory" groups a role under the "Founder & advisory roles" subheading in
+  // the Experience list, so the overlapping side ventures read as one cluster
+  // instead of padding the main operating timeline.
+  group?: "advisory";
+};
+
+// Order: primary operating roles first (recency), then the "Founder & advisory"
+// cluster (group: "advisory") so the overlapping 2019–21 side ventures read as
+// one group, then the four early-career finance roles (rendered as the compact
+// "Early Career" logo row).
+export const roles: Role[] = [
+  {
+    org: "Brandlete, Inc.",
+    title: "Founding Director / VP Partnerships",
+    period: "Nov 2021 – Present",
+    blurb: "Building the sports program operating system for organizations, connecting admins, coaches, athletes, and parents in one platform.",
+    logo: logoDev("brandlete.com"),
+    mark: "B",
+    accent: "#f5c518",
+    url: "https://brandlete.com",
+  },
+  {
+    org: "Kreuz Staffing & Business Development",
+    title: "Strategic Talent Advisor",
+    period: "Jul 2026 – Present",
+    blurb: "Recruit and place top talent across sales, business development, and manufacturing.",
+    logo: "/logos/kreuz.jpg",
+    mark: "K",
+    accent: "#c2a14d",
+  },
+  {
+    org: "OnCore Golf",
+    title: "Director of Business Development / Strategic Advisor",
+    period: "Jun 2016 – Aug 2025",
+    blurb: "Secured $3.5M+ in distribution partnerships with DICK'S, Golf Galaxy, and Wegmans, plus $450K+ in venture fundraising.",
+    logo: logoDev("oncoregolf.com"),
+    mark: "OC",
+    accent: "#111827",
+    url: "https://oncoregolf.com",
+  },
+  {
+    org: "EmergenceTek Group Inc.",
+    title: "VP Sales / Founding Director / Consultant",
+    period: "Sep 2012 – Sep 2024",
+    blurb: "Grew the client base from 0 to 35+ accounts and helped scale the company to $5M in revenue.",
+    logo: logoDev("emergencetek.com"),
+    mark: "ET",
+    accent: "#0ea5e9",
+    url: "https://emergencetek.com",
+  },
+  {
+    org: "DataSure24",
+    title: "Director of Sales / Business Development",
+    period: "Aug 2018 – Jul 2019",
+    blurb: "Managed $1M+ in revenue and pipeline, building the CRM through outbound prospecting and channel partnerships.",
+    logo: logoDev("datasure24.com"),
+    mark: "DS",
+    accent: "#dc2626",
+    url: "https://datasure24.com",
+  },
+  {
+    org: "POWER of OZmosis",
+    title: "Fractional GTM, Corporate Trainer / Coach + Revenue Partnerships Advisor",
+    period: "Jul 2019 – Present",
+    blurb: "Drove $1.3M+ in net new deals and secured $375K+ in client venture funding through full-cycle sales and GTM consulting.",
+    logo: logoDev("powerofozmosis.com"),
+    mark: "OZ",
+    accent: "#1d4ed8",
+    url: "https://powerofozmosis.com",
+    group: "advisory",
+  },
+  {
+    org: "Bad Golf Business School",
+    title: "Co-Founder",
+    period: "Jan 2019 – Jul 2025",
+    blurb: "Co-founded a Techstars-backed, golf-driven networking platform convening 100+ founders and operators per event.",
+    logo: "/logos/badgolf.png",
+    mark: "BG",
+    accent: "#15803d",
+    url: "https://powerofozmosis.com",
+    group: "advisory",
+  },
+  {
+    org: "Oro Sports USA, Inc.",
+    title: "Strategic Advisor",
+    period: "May 2019 – Dec 2021",
+    blurb: "Advised the CEO on go-to-market and product positioning for youth-sports audiences.",
+    logo: "/logos/orosports.png",
+    mark: "OS",
+    accent: "#14b8a6",
+    url: "https://orosportsusa.com",
+    group: "advisory",
+  },
+  {
+    org: "Citi",
+    title: "Investment Equities Associate",
+    period: "Apr 2012 – Dec 2012",
+    blurb: "Worked the institutional equities side, supporting trading and client coverage.",
+    logo: logoDev("citi.com"),
+    mark: "C",
+    accent: "#003b70",
+    url: "https://citi.com",
+  },
+  {
+    org: "CFA Institute",
+    title: "Management Analyst",
+    period: "Jan 2012 – Sep 2012",
+    blurb: "Supported management analysis and operations for the global investment credentialing body.",
+    logo: logoDev("cfainstitute.org"),
+    mark: "CFA",
+    accent: "#00539b",
+    url: "https://cfainstitute.org",
+  },
+  {
+    org: "Bloomberg",
+    title: "Brand Engagement Lead",
+    period: "Sep 2011 – May 2012",
+    blurb: "Led brand engagement and client-facing initiatives across the financial data platform.",
+    logo: logoDev("bloomberg.com"),
+    mark: "B",
+    accent: "#111827",
+    url: "https://bloomberg.com",
+  },
+  {
+    org: "M&T Bank",
+    title: "Profitability Analytics Associate",
+    period: "Jan 2011 – Sep 2011",
+    blurb: "Ran profitability analytics supporting the bank's commercial lines.",
+    logo: logoDev("mtb.com"),
+    mark: "MT",
+    accent: "#005e5d",
+    url: "https://mtb.com",
+  },
+];
+
+// Partnership sectors — drive the donut chart and the filterable logo wall.
+// Order here is the order chips render in.
+// Tools & technology — from John's resume, ordered by importance. AI tools lead
+// (John builds in AI-native startups), then sales/GTM, collaboration, creative,
+// job boards, and golf tech. `logo` pulls the real brand mark via logo.dev;
+// `mark`/`accent` are the colored-monogram fallback rendered by <SkillsGrid>.
+// `category` drives the filterable chips, same pattern as the civic and
+// partnership walls.
+export type ToolCategory =
+  | "AI"
+  | "Sales & GTM"
+  | "Collaboration"
+  | "Creative & Marketing"
+  | "Job Boards"
+  | "Golf Tech";
+
+export const TOOL_CATEGORIES: { name: ToolCategory; color: string }[] = [
+  { name: "AI", color: "#f5c518" },
+  { name: "Sales & GTM", color: "#7c4dff" },
+  { name: "Collaboration", color: "#16a34a" },
+  { name: "Creative & Marketing", color: "#f59e0b" },
+  { name: "Job Boards", color: "#ef4444" },
+  { name: "Golf Tech", color: "#0e7490" },
+];
+
+export type Tool = { name: string; logo: string; mark: string; accent: string; category: ToolCategory; url?: string };
+
+export const tools: Tool[] = [
+  // AI
+  { name: "Claude", logo: logoDev("anthropic.com"), mark: "C", accent: "#d97757", category: "AI" },
+  { name: "ChatGPT", logo: logoDev("openai.com"), mark: "AI", accent: "#10a37f", category: "AI" },
+  { name: "Claude Code", logo: logoDev("claude.com"), mark: "CC", accent: "#d97757", category: "AI" },
+  { name: "Gemini", logo: "/logos/tool-gemini.svg", mark: "G", accent: "#8e75f8", category: "AI" },
+  { name: "Perplexity", logo: logoDev("perplexity.ai"), mark: "PX", accent: "#20808d", category: "AI" },
+  { name: "Copilot", logo: "/logos/tool-copilot.svg", mark: "Co", accent: "#111111", category: "AI" },
+  // Sales / GTM
+  { name: "HubSpot", logo: logoDev("hubspot.com"), mark: "HS", accent: "#ff7a59", category: "Sales & GTM" },
+  { name: "LinkedIn Sales Navigator", logo: logoDev("linkedin.com"), mark: "in", accent: "#0a66c2", category: "Sales & GTM" },
+  { name: "ZoomInfo", logo: logoDev("zoominfo.com"), mark: "ZI", accent: "#e11d48", category: "Sales & GTM" },
+  { name: "LinkedIn Recruiter", logo: logoDev("linkedin.com"), mark: "in", accent: "#0a66c2", category: "Sales & GTM" },
+  // Collaboration / productivity
+  { name: "Slack", logo: logoDev("slack.com"), mark: "S", accent: "#611f69", category: "Collaboration" },
+  { name: "Microsoft Teams", logo: "/logos/tool-teams.svg", mark: "T", accent: "#6264a7", category: "Collaboration" },
+  { name: "Microsoft 365", logo: logoDev("microsoft.com"), mark: "365", accent: "#0078d4", category: "Collaboration" },
+  { name: "Google Workspace", logo: "", mark: "GW", accent: "#4285f4", category: "Collaboration" },
+  { name: "Monday.com", logo: logoDev("monday.com"), mark: "M", accent: "#ff3d57", category: "Collaboration" },
+  { name: "Asana", logo: logoDev("asana.com"), mark: "A", accent: "#f06a6a", category: "Collaboration" },
+  { name: "Trello", logo: logoDev("trello.com"), mark: "T", accent: "#0079bf", category: "Collaboration" },
+  { name: "Jira", logo: logoDev("jira.com"), mark: "J", accent: "#0052cc", category: "Collaboration", url: "https://www.atlassian.com/software/jira" },
+  { name: "GitHub", logo: logoDev("github.com"), mark: "GH", accent: "#111111", category: "Collaboration", url: "https://github.com" },
+  // Creative / marketing
+  { name: "Canva", logo: logoDev("canva.com"), mark: "C", accent: "#00c4cc", category: "Creative & Marketing" },
+  { name: "Mailchimp", logo: logoDev("mailchimp.com"), mark: "MC", accent: "#eab308", category: "Creative & Marketing" },
+  { name: "Eventbrite", logo: logoDev("eventbrite.com"), mark: "E", accent: "#f05537", category: "Creative & Marketing" },
+  // Job boards
+  { name: "Dice", logo: logoDev("dice.com"), mark: "D", accent: "#e11d48", category: "Job Boards" },
+  { name: "Monster", logo: logoDev("monster.com"), mark: "M", accent: "#6f42c1", category: "Job Boards" },
+  // Golf tech
+  { name: "Golf Genius", logo: logoDev("golfgenius.com"), mark: "GG", accent: "#1a7f37", category: "Golf Tech" },
+  { name: "BlueGolf", logo: logoDev("bluegolf.com"), mark: "BG", accent: "#1d4ed8", category: "Golf Tech" },
+];
+
+export type Sector =
+  | "Sports & Golf"
+  | "Beverage & CPG"
+  | "Healthcare"
+  | "Finance & Insurance"
+  | "Media, Energy & Travel";
+
+export const SECTORS: { name: Sector; color: string }[] = [
+  { name: "Sports & Golf", color: "#f5c518" },
+  { name: "Beverage & CPG", color: "#1b3b6f" },
+  { name: "Healthcare", color: "#2563eb" },
+  { name: "Finance & Insurance", color: "#ffe9a3" },
+  { name: "Media, Energy & Travel", color: "#005f99" },
+];
+
+// Revenue driven by venture, in $K. Numbers are the ones John states on his
+// resume for each role — used by the "Revenue driven, by venture" bar chart.
+export const revenueByVenture: { label: string; period: string; valueK: number; note: string }[] = [
+  { label: "OnCore Golf", period: "2017–18", valueK: 4000, note: "DICK'S, Golf Galaxy, Wegmans, NYSGA" },
+  { label: "EmergenceTek", period: "2012–17", valueK: 5000, note: "0→25+ enterprise & mid-market" },
+  { label: "POWER of OZmosis", period: "2019–26", valueK: 820, note: "$325K revenue · $775K deal flow" },
+  { label: "PGA WNY", period: "2020–2025", valueK: 750, note: "annual, sponsorships & renewals" },
+];
+
+// Career milestones for the interactive timeline. `metric` is the one headline
+// number for each stop; `revenueK` sizes the marker.
+export const milestones: { year: string; org: string; title: string; metric: string; details: string[]; revenueK: number }[] = [
+  {
+    year: "2012",
+    org: "EmergenceTek",
+    title: "VP, Client Engagement & Sales",
+    metric: "$5M+ · 0→25 orgs",
+    details: [
+      "Built client engagement from zero to 25 orgs.",
+      "Owned the sales cycle, closing $5M+.",
+    ],
+    revenueK: 5000,
+  },
+  {
+    year: "2017",
+    org: "OnCore Golf",
+    title: "Director of Partnerships",
+    metric: "$4M+ driven",
+    details: [
+      "Grew national golf retail and brand partnerships.",
+      "Drove $4M+ through DICK'S, Golf Galaxy, and tour deals.",
+    ],
+    revenueK: 4000,
+  },
+  {
+    year: "2019",
+    org: "POWER of OZmosis",
+    title: "Founder / Principal",
+    metric: "40+ founders coached",
+    details: [
+      "Founded a startup-advisory practice for GTM and partnerships.",
+      "Coached 40+ founders to fundraising and first revenue.",
+    ],
+    revenueK: 820,
+  },
+  {
+    year: "2021",
+    org: "Brandlete",
+    title: "Founding Director / VP Partnerships",
+    metric: "Sports Org OS & Athlete Development Engine",
+    details: [
+      "Co-founded the operating system for coaches, athletes, and sports orgs.",
+      "Built the partnerships engine behind the platform.",
+    ],
+    revenueK: 1000,
+  },
+  {
+    year: "2023",
+    org: "PGA of America WNY",
+    title: "Director, Partnerships & Dev.",
+    metric: "275% growth · 97% retained",
+    details: [
+      "Rebuilt the section's partnership and development program.",
+      "Grew sponsorship 275%, retained 97% of partners.",
+    ],
+    revenueK: 250,
+  },
+];
+
+export type Brand = { name: string; mark: string; accent: string; logo: string; url: string; sector: Sector; darkInvert?: boolean };
+
+export const brands: Brand[] = [
+  { name: "DICK'S", mark: "D", accent: "#1c8c3b", logo: "/logos/dicks.png", url: "https://www.dickssportinggoods.com", sector: "Sports & Golf" },
+  { name: "Golf Galaxy", mark: "GG", accent: "#2f7df6", logo: "/logos/golfgalaxy.png", url: "https://www.golfgalaxy.com", sector: "Sports & Golf" },
+  { name: "Wegmans", mark: "W", accent: "#e0301e", logo: "/logos/wegmans.png", url: "https://www.wegmans.com", sector: "Beverage & CPG" },
+  { name: "Michelob Ultra", mark: "MU", accent: "#c79a3a", logo: "/logos/michelobultra.png", url: "https://www.michelobultra.com", sector: "Beverage & CPG" },
+  { name: "Oakley", mark: "O", accent: "#9aa0a8", logo: logoDev("oakley.com"), url: "https://www.oakley.com", sector: "Sports & Golf", darkInvert: true },
+  { name: "Ralph Lauren RLX", mark: "RLX", accent: "#3b5bdb", logo: logoDev("ralphlauren.com"), url: "https://www.ralphlauren.com/search?q=rlx+golf", sector: "Sports & Golf" },
+  { name: "Tito's", mark: "T", accent: "#3aa0ff", logo: "/logos/brands/titosvodka-com.png", url: "https://www.titosvodka.com", sector: "Beverage & CPG" },
+  { name: "Corebridge Financial", mark: "CF", accent: "#7c4dff", logo: "/logos/corebridge.png", url: "https://www.corebridgefinancial.com", sector: "Finance & Insurance" },
+  { name: "Sandals Resorts", mark: "S", accent: "#14b8a6", logo: "/logos/brands/sandals-com.png", url: "https://www.sandals.com", sector: "Media, Energy & Travel" },
+  { name: "Gallagher Insurance", mark: "G", accent: "#e0a82e", logo: logoDev("ajg.com"), url: "https://www.ajg.com", sector: "Finance & Insurance" },
+  { name: "National Fuel", mark: "NF", accent: "#2563eb", logo: logoDev("nationalfuel.com"), url: "https://www.nationalfuel.com", sector: "Media, Energy & Travel" },
+  { name: "Special Olympics", mark: "SO", accent: "#e0301e", logo: logoDev("specialolympics.org"), url: "https://www.specialolympics.org", sector: "Sports & Golf" },
+  { name: "Gatorade", mark: "G", accent: "#ff7a1a", logo: logoDev("gatorade.com"), url: "https://www.gatorade.com", sector: "Beverage & CPG" },
+  { name: "Audacy", mark: "A", accent: "#ff4e00", logo: "/logos/audacy.png", url: "https://www.audacy.com", sector: "Media, Energy & Travel" },
+  { name: "Club Car", mark: "CC", accent: "#22a447", logo: logoDev("clubcar.com"), url: "https://www.clubcar.com", sector: "Sports & Golf" },
+  { name: "NY State Golf Assn.", mark: "NYSGA", accent: "#344475", logo: logoDev("nysga.org"), url: "https://nysga.org", sector: "Sports & Golf" },
+  { name: "Liazon (WTW)", mark: "L", accent: "#0a6ebd", logo: logoDev("wtwco.com"), url: "https://www.wtwco.com", sector: "Finance & Insurance" },
+  { name: "CareSource", mark: "CS", accent: "#00a0af", logo: logoDev("caresource.com"), url: "https://www.caresource.com", sector: "Healthcare" },
+  { name: "HealtheLink", mark: "HL", accent: "#1b75bc", logo: logoDev("wnyhealthelink.com"), url: "https://wnyhealthelink.com", sector: "Healthcare" },
+  { name: "Fidelis Care", mark: "FC", accent: "#00529b", logo: logoDev("fideliscare.org"), url: "https://www.fideliscare.org", sector: "Healthcare" },
+  { name: "HealtheConnections", mark: "HC", accent: "#6cb33f", logo: logoDev("healtheconnections.org"), url: "https://www.healtheconnections.org", sector: "Healthcare" },
+  { name: "BlueCross BlueShield", mark: "BCBS", accent: "#0066b3", logo: logoDev("bcbswny.com"), url: "https://www.bcbswny.com", sector: "Healthcare" },
+  { name: "Oro Sports USA", mark: "OS", accent: "#d4af37", logo: "/logos/orosports.png", url: "https://www.orosportsusa.com", sector: "Sports & Golf" },
+  { name: "Rolex", mark: "R", accent: "#006039", logo: logoDev("rolex.com"), url: "https://www.rolex.com", sector: "Sports & Golf" },
+  { name: "Pepsi", mark: "P", accent: "#004b93", logo: logoDev("pepsi.com"), url: "https://www.pepsi.com", sector: "Beverage & CPG" },
+  { name: "Evolve Golf", mark: "EG", accent: "#3aa447", logo: logoDev("evolvegolf.com"), url: "https://www.evolvegolf.com", sector: "Sports & Golf" },
+  { name: "Antigua Apparel", mark: "A", accent: "#0a2342", logo: logoDev("antigua.com"), url: "https://www.antigua.com", sector: "Sports & Golf" },
+  { name: "Bushnell Golf", mark: "B", accent: "#e35205", logo: logoDev("bushnellgolf.com"), url: "https://www.bushnellgolf.com", sector: "Sports & Golf" },
+  { name: "Golf Max", mark: "GM", accent: "#2f7df6", logo: logoDev("golfmaxusa.com"), url: "https://golfmaxusa.com", sector: "Sports & Golf" },
+  { name: "Titleist", mark: "T", accent: "#d0021b", logo: "/logos/titleist.png", url: "https://www.titleist.com", sector: "Sports & Golf" },
+  { name: "Levelwear", mark: "L", accent: "#111827", logo: logoDev("levelwear.com"), url: "https://www.levelwear.com", sector: "Sports & Golf" },
+  { name: "Stitch Golf", mark: "SG", accent: "#1b2a4a", logo: logoDev("stitchgolf.com"), url: "https://www.stitchgolf.com", sector: "Sports & Golf" },
+  { name: "Sterling Cut Glass", mark: "SCG", accent: "#b8860b", logo: logoDev("sterlingcutglass.com"), url: "https://www.sterlingcutglass.com", sector: "Sports & Golf" },
+  { name: "StrackaLine", mark: "SL", accent: "#2e7d32", logo: logoDev("strackaline.com"), url: "https://www.strackaline.com", sector: "Sports & Golf" },
+  { name: "Donald Ross Sportswear", mark: "DR", accent: "#14213d", logo: logoDev("donaldross.com"), url: "https://donaldross.com", sector: "Sports & Golf" },
+  { name: "2nd Swing", mark: "2S", accent: "#1c8c3b", logo: logoDev("2ndswing.com"), url: "https://www.2ndswing.com", sector: "Sports & Golf" },
+  { name: "StickX Golf", mark: "SX", accent: "#ff6a00", logo: "/logos/stickxgolf.png", url: "https://www.stickxgolf.com", sector: "Sports & Golf" },
+  { name: "Under Armour", mark: "UA", accent: "#1d1d1d", logo: logoDev("underarmour.com"), url: "https://www.underarmour.com", sector: "Sports & Golf" },
+  { name: "Withum", mark: "W", accent: "#e2231a", logo: logoDev("withum.com"), url: "https://www.withum.com", sector: "Finance & Insurance" },
+  { name: "Club Champion", mark: "CC", accent: "#c8102e", logo: logoDev("clubchampiongolf.com"), url: "https://www.clubchampiongolf.com", sector: "Sports & Golf" },
+  { name: "GolfTec", mark: "GT", accent: "#ed1c24", logo: logoDev("golftec.com"), url: "https://www.golftec.com", sector: "Sports & Golf" },
+];
+
+export type PressItem = { source: string; title: string; href: string; logo: string; fallback: string };
+
+export const press: PressItem[] = [
+  {
+    source: "Empire State Entrepreneurs",
+    title: "John Osberg of WNY PGA — entrepreneur, athlete, growth strategist",
+    href: "https://empirestateentrepreneurs.transistor.fm/s2/7",
+    logo: "/logos/news-ese.png",
+    fallback: "/logos/news-ese.png",
+  },
+  {
+    source: "Clark Dever",
+    title: "Bad Golf Business School: Startup Lessons from the Fairway",
+    href: "https://www.clarkdever.com/projects/bad-golf-business-school",
+    logo: logoDev("clarkdever.com"),
+    fallback: "/logos/news-clarkdever.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "Healthiest Employers of Western New York 2024",
+    href: "https://www.bizjournals.com/buffalo/news/2024/08/23/healthiest-employers-western-new-york-2024-winners.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "John Osberg & Brandlete in Buffalo Business First",
+    href: "https://www.bizjournals.com/buffalo/inno/stories/news/2022/09/02/brandlete-buffalo-startup-sports-social-media.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "PGA REACH WNY",
+    title: "John Osberg Named PGA REACH WNY Trustee",
+    href: "https://westernnewyork.pga.com/news/john-osberg-named-as-pga-reach-wny-trustee/",
+    logo: logoDev("pga.com"),
+    fallback: "/logos/pgareach.png",
+  },
+  {
+    source: "Western NY PGA",
+    title: "Osberg Named Director of Development & Foundation Operations",
+    href: "https://westernnewyork.pga.com/wp-content/uploads/sites/16/2023/07/Press-Release_Osberg.docx.pdf",
+    logo: logoDev("pga.com"),
+    fallback: "/logos/news-pga.png",
+  },
+  {
+    source: "PGA.com",
+    title: "PGA REACH Hosts Charity Pro-Am at Oak Hill Country Club",
+    href: "https://www.pga.com/story/pga-reach-recently-hosted-a-charity-pro-am-at-oak-hill-country-club",
+    logo: logoDev("pga.com"),
+    fallback: "/logos/news-pga.png",
+  },
+  {
+    source: "NYSGA",
+    title: "NYSGA Partners with Buffalo-Based OnCore Golf",
+    href: "https://nysga.org/communications-news/nysga-partners-with-buffalo-based-oncore-golf-technology",
+    logo: logoDev("nysga.org"),
+    fallback: "/logos/nysga.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "Buffalo 30 Under 30 Winner",
+    href: "https://www.bizjournals.com/buffalo/news/2019/04/01/buffalo-2019-30-under-30-winners-wny.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "How to be a better CEO: OZmosis' John Osberg on 'actualizing' your potential",
+    href: "https://www.bizjournals.com/buffalo/news/2021/08/24/ozmosis-john-osberg-consultancy.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "John Osberg launches OZmosis Consulting in Buffalo",
+    href: "https://www.bizjournals.com/buffalo/news/2020/10/16/john-osberg-ozmosis-consulting-startup-news.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "Growing EmergenceTek pledges to create 40 new jobs in downtown Buffalo",
+    href: "https://www.bizjournals.com/buffalo/news/2017/04/20/growing-emergencetek-pledges-to-create-40-new-jobs.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+  {
+    source: "Buffalo Business First",
+    title: "EmergenceTek: Another high-growth software startup in Buffalo",
+    href: "https://www.bizjournals.com/buffalo/news/2015/05/02/emergencetek-another-high-growth-software-startup.html",
+    logo: logoDev("bizjournals.com"),
+    fallback: "/logos/news-biz.png",
+  },
+];
+
+// Awards & honors — mirrors John's LinkedIn "Honors & awards", newest first.
+// Repeat issuers (PGA, Heritage Christian Services, Veterans Affairs) are
+// grouped into one entry that lists each award with its year.
+// Each award carries an issuer `logo` (logo.dev by domain, or "" to skip) plus a
+// `mark` + `accent` for a clean monogram fallback when the issuer has no crisp
+// logo — the AwardLogo component swaps to the monogram on a 404 so a row never
+// shows a broken image (same pattern as RoleLogo).
+export type Award = {
+  org: string;
+  logo: string;
+  mark: string;
+  accent: string;
+  url: string;
+  items: { title: string; year: string }[];
+};
+
+export const awards: Award[] = [
+  {
+    org: "InfoTech WNY",
+    logo: "/logos/civ-infotech-wny.png",
+    mark: "IT",
+    accent: "#2563eb",
+    url: "https://infotechwny.com/",
+    items: [
+      { title: "Key Contributor Award Nominee", year: "2026" },
+      { title: "The Rebel Award Nominee", year: "2020" },
+    ],
+  },
+  {
+    org: "PGA REACH Foundation",
+    logo: "/logos/pgareach.png",
+    mark: "PGA",
+    accent: "#0a2240",
+    url: "https://www.pgareach.org/",
+    items: [
+      { title: "Elite Fundraiser Award · REACH Foundation", year: "2025" },
+      { title: "Above & Beyond Recognition Award", year: "2024" },
+    ],
+  },
+  {
+    org: "Buffalo Business First",
+    logo: logoDev("bizjournals.com"),
+    mark: "BBF",
+    accent: "#1a3c6e",
+    url: "https://www.bizjournals.com/buffalo",
+    items: [
+      { title: "Wellness Champion of 2024", year: "2024" },
+      { title: "30 Under 30 Awardee", year: "2019" },
+    ],
+  },
+  {
+    org: "U.S. Dept. of Veterans Affairs",
+    logo: logoDev("va.gov"),
+    mark: "VA",
+    accent: "#112e51",
+    url: "https://www.va.gov",
+    items: [
+      { title: "Community Partnership Award", year: "2022" },
+      { title: "Certificate of Pride in Public Service", year: "2021" },
+    ],
+  },
+  {
+    org: "Heritage Christian Services",
+    logo: "/logos/heritagechristian.png",
+    mark: "HCS",
+    accent: "#0f766e",
+    url: "https://heritagechristianservices.org/",
+    items: [
+      { title: "Top Fundraiser Award", year: "2022" },
+      { title: "Carol & Ernie Forth Community Service Award", year: "2021" },
+      { title: "Top Fundraiser / Event Chair Award", year: "2018" },
+    ],
+  },
+  {
+    org: "November Project — Buffalo",
+    logo: logoDev("november-project.com"),
+    mark: "NP",
+    accent: "#e11d48",
+    url: "https://november-project.com",
+    items: [{ title: "“Good Neighbor” Community Award", year: "2022" }],
+  },
+  {
+    org: "Techstars Buffalo",
+    logo: logoDev("techstars.com"),
+    mark: "TS",
+    accent: "#16a34a",
+    url: "https://www.techstars.com",
+    items: [{ title: "Impact Player Recognition", year: "2021" }],
+  },
+  {
+    org: "Cystic Fibrosis Foundation",
+    logo: logoDev("cff.org"),
+    mark: "CF",
+    accent: "#7c3aed",
+    url: "https://www.cff.org",
+    items: [{ title: "Rising Star Awardee", year: "2018" }],
+  },
+  {
+    org: "The First Tee of WNY",
+    logo: "/logos/firsttee.png",
+    mark: "FT",
+    accent: "#15803d",
+    url: "https://firsttee.org",
+    items: [{ title: "New Coach of the Year", year: "2016" }],
+  },
+  {
+    org: "Niagara University",
+    logo: logoDev("niagara.edu"),
+    mark: "NU",
+    accent: "#5a2d82",
+    url: "https://www.niagara.edu",
+    items: [
+      { title: "Top 20 Most Intriguing Student", year: "2013" },
+      { title: "Everett J. Ockerman Award Winner, Distinguished Senior Year Business Student", year: "2012" },
+      { title: "Who’s Who Among Students in American Universities & Colleges", year: "2012" },
+    ],
+  },
+];
+
+export const FEATURED_VIDEO = {
+  id: "03PnTookfKY",
+  start: 500,
+  title: "John Osberg on The Incept CONNECT Podcast",
+};
+
+// Guest appearance, embedded directly under the main podcast and above the
+// three playlist cards. Featured episode from John's "Featured Guest" playlist.
+export const FEATURED_GUEST_VIDEO = {
+  id: "n2aAi-frg7Q",
+  start: 0,
+  title: "John Osberg, Featured Guest",
+};
+
+export type Podcast = { title: string; role: "Host" | "Guest"; href: string; thumb: string };
+
+export const podcasts: Podcast[] = [
+  {
+    title: "Most Recent Feature - Tools, Talents, Techniques - Brandlete",
+    role: "Guest",
+    href: "https://www.youtube.com/watch?v=JactVwJOtyE",
+    thumb: "JactVwJOtyE",
+  },
+  {
+    title: "The Incept CONNECT Podcast",
+    role: "Host",
+    href: "https://www.youtube.com/playlist?list=PLWvPwqLIgvdvsFWhEAOLgHBuB_e_aAhk8",
+    thumb: "uJ39_XxlB3I",
+  },
+  {
+    title: "Featured Guest Appearances",
+    role: "Guest",
+    href: "https://www.youtube.com/playlist?list=PLgKNSRICJcqgMHOYeCaDmnwcjEnzumQSn",
+    thumb: "/podcasts/smarter-business.png",
+  },
+  {
+    title: "POWER of OZmosis Podcast Library",
+    role: "Host",
+    href: "https://www.youtube.com/playlist?list=PLgKNSRICJcqgUd-nFY-z2VXu68NbiauLm",
+    thumb: "cRGzR-yDVEo",
+  },
+  {
+    title: "The Vidwheel Podcast",
+    role: "Host",
+    href: "https://www.youtube.com/playlist?list=PLgKNSRICJcqg2uZaGoT40iPyNRdhHXadG",
+    thumb: "axFUn_K8mD0",
+  },
+];
+
+// Moments gallery — a filmstrip of life-and-career photos that drifts left near
+// the bottom of the page. Order here is display order (left to right); John
+// reorders chronologically by moving entries. `caption` is optional; leave it
+// off for a bare photo. Images live in /public/gallery, web-sized.
+export type Moment = { src: string; caption?: string };
+
+export const gallery: Moment[] = [
+  { src: "/gallery/IMG_7693.jpg", caption: "Youth hockey, 1998" },
+  { src: "/gallery/IMG_3405.jpg", caption: "Game day" },
+  { src: "/gallery/IMG_1467.jpg", caption: "In the office" },
+  { src: "/gallery/IMG_3721.jpg", caption: "Suited up with the crew" },
+  { src: "/gallery/IMG_8245.jpg", caption: "After hours" },
+  { src: "/gallery/IMG_5521.jpg", caption: "Building it out" },
+  { src: "/gallery/IMG_2652.jpg", caption: "Repping EmergenceTek Group" },
+  { src: "/gallery/IMG_4085.jpg", caption: "On the range" },
+  { src: "/gallery/IMG_7500.jpg", caption: "Beach volleyball" },
+  { src: "/gallery/IMG_4542.jpg", caption: "Tournament day" },
+  { src: "/gallery/g2-IMG_9372.jpg", caption: "30 Under 30" },
+  { src: "/gallery/g2-IMG_0824.jpg", caption: "Grand opening ribbon cutting" },
+  { src: "/gallery/g2-IMG_9269.jpg", caption: "Speaking on networking" },
+  { src: "/gallery/g2-IMG_5315.jpg", caption: "EmergenceTek Group booth" },
+  { src: "/gallery/g2-IMG_9175.jpg", caption: "Presenting a donation" },
+  { src: "/gallery/g2-IMG_1230.jpg", caption: "A night to remember" },
+  { src: "/gallery/g2-IMG_7910.jpg", caption: "Gala night" },
+  { src: "/gallery/g2-IMG_0790.jpg", caption: "A meaningful visit" },
+  { src: "/gallery/g2-IMG_5544.jpg", caption: "OnCore Golf outing" },
+  { src: "/gallery/g2-IMG_7749.jpg", caption: "OnCore Golf, day one" },
+  { src: "/gallery/g2-IMG_4952.jpg", caption: "One year at OnCore Golf" },
+  { src: "/gallery/g2-IMG_6136.jpg", caption: "Passing on the game" },
+  { src: "/gallery/g2-IMG_6249.jpg", caption: "First Tee of WNY" },
+  { src: "/gallery/g2-IMG_3965.jpg", caption: "At the Bills podium" },
+  { src: "/gallery/g2-IMG_3949.jpg", caption: "On the Bills field" },
+  { src: "/gallery/g2-IMG_5521.jpg", caption: "Solheim Cup" },
+  { src: "/gallery/g2-IMG_3392.jpg", caption: "Evening nine" },
+  { src: "/gallery/g2-IMG_0669.jpg", caption: "The home range" },
+  { src: "/gallery/g2-IMG_5379.jpg", caption: "7 AM tee time, in memory" },
+  { src: "/gallery/g2-IMG_8774.jpg", caption: "Beach volleyball" },
+  { src: "/gallery/g3-IMG_1478.jpg", caption: "Vikings hockey, #29" },
+  { src: "/gallery/g3-IMG_7806.jpg", caption: "Winter Classic" },
+  { src: "/gallery/g3-IMG_8854.jpg", caption: "Networking night" },
+  { src: "/gallery/g3-IMG_6363.jpg", caption: "Teaching the room" },
+  { src: "/gallery/g3-IMG_6953.jpg", caption: "Golf dome, full house" },
+  { src: "/gallery/g3-IMG_9059.jpg", caption: "PGA HOPE round" },
+  { src: "/gallery/g3-IMG_4852.jpg", caption: "PGA HOPE, serving vets" },
+  { src: "/gallery/g3-IMG_2710.jpg", caption: "Spring tee shot" },
+  { src: "/gallery/g3-IMG_3991.jpg", caption: "Clubhouse view" },
+  { src: "/gallery/g3-IMG_8825.jpg", caption: "A quiet moment" },
+  { src: "/gallery/g4-IMG_9990.jpg", caption: "Doubles Golf championship" },
+  { src: "/gallery/g4-IMG_9739.jpg", caption: "Championship weekend" },
+  { src: "/gallery/g4-IMG_8117.jpg", caption: "Pure joy on the course" },
+  { src: "/gallery/g4-IMG_6392.jpg", caption: "PGA HOPE, class in session" },
+  { src: "/gallery/g4-IMG_8269.jpg", caption: "Fall scramble" },
+  { src: "/gallery/g4-IMG_7825.jpg", caption: "At the ETG office" },
+  { src: "/gallery/g4-IMG_2004.jpg", caption: "Sunrise miles" },
+  { src: "/gallery/g4-IMG_2003.jpg", caption: "Winter run by the water" },
+  { src: "/gallery/g4-run-downtown.jpg", caption: "Downtown run" },
+  { src: "/gallery/g4-IMG_7219.jpg", caption: "Around the table" },
+  { src: "/gallery/g5-IMG_8821.jpg", caption: "PGA HOPE, honoring our vets" },
+  { src: "/gallery/g5-IMG_3260.jpg", caption: "This is what an entrepreneur looks like" },
+  { src: "/gallery/g5-IMG_2039.jpg", caption: "With fellow founders" },
+  { src: "/gallery/g5-IMG_2437.jpg", caption: "Mentoring the cohort" },
+  { src: "/gallery/g5-IMG_2423.jpg", caption: "On the panel" },
+  { src: "/gallery/g5-IMG_1956.jpg", caption: "Junior golf day" },
+  { src: "/gallery/g5-IMG_1192.jpg", caption: "OnCore outing" },
+  { src: "/gallery/g5-IMG_2269.jpg", caption: "At the clubhouse" },
+  { src: "/gallery/g5-IMG_1623.jpg", caption: "Community workout" },
+  { src: "/gallery/g5-IMG_8492.jpg", caption: "Networking, Buffalo" },
+  { src: "/gallery/g6-IMG_9655.jpg", caption: "4x4x48 challenge" },
+  { src: "/gallery/g6-IMG_3934.jpg", caption: "Night miles, done" },
+  { src: "/gallery/g6-IMG_0610.jpg", caption: "Leading the virtual room" },
+  { src: "/gallery/g6-IMG_2056.jpg", caption: "Youth workshop" },
+  { src: "/gallery/g6-IMG_6208.jpg", caption: "Fall round with the crew" },
+  { src: "/gallery/g6-IMG_9508.jpg", caption: "OnCore team" },
+  { src: "/gallery/g6-IMG_8572.jpg", caption: "At the club" },
+  { src: "/gallery/g6-IMG_9853.jpg", caption: "Sunday breakfast" },
+  { src: "/gallery/g6-IMG_1170.jpg", caption: "Dinner out" },
+  { src: "/gallery/g7-IMG_5014.jpg", caption: "Run club at the stadium" },
+  { src: "/gallery/g7-IMG_4846.jpg", caption: "PGA HOPE Western New York" },
+  { src: "/gallery/g7-RenderedImage.jpg", caption: "Under the flag" },
+  { src: "/gallery/g7-sil-2173.jpg", caption: "Conference panel" },
+  { src: "/gallery/g7-IMG_6699.jpg", caption: "Guest speaker: Think Big, Go Far" },
+  { src: "/gallery/g7-IMG_4845.jpg", caption: "Working the room" },
+  { src: "/gallery/g7-IMG_4582.jpg", caption: "In the boardroom" },
+  { src: "/gallery/g7-IMG_4979.jpg", caption: "On the course together" },
+  { src: "/gallery/g7-IMG_7167.jpg", caption: "Good company" },
+  { src: "/gallery/g8-IMG_9610.jpg", caption: "Community Partnership Award" },
+  { src: "/gallery/g8-IMG_2180.jpg", caption: "Race day" },
+  { src: "/gallery/g8-IMG_9567.jpg", caption: "On the mic" },
+  { src: "/gallery/g8-IMG_9601.jpg", caption: "Behind the podcast" },
+  { src: "/gallery/g8-IMG_1288.jpg", caption: "In the studio" },
+  { src: "/gallery/g8-IMG_1573.jpg", caption: "Studio day" },
+  { src: "/gallery/g8-IMG_1590.jpg", caption: "Golf sim session" },
+  { src: "/gallery/g8-IMG_1174.jpg", caption: "Teed up" },
+  { src: "/gallery/g8-IMG_4734.jpg", caption: "Good day on the course" },
+  { src: "/gallery/g8-IMG_0542.jpg", caption: "Night run" },
+  { src: "/gallery/g9-IMG_6118.jpg", caption: "Charity hockey at the arena" },
+  { src: "/gallery/g9-panel-2022.jpg", caption: "Panel night" },
+  { src: "/gallery/g9-IMG_6371.jpg", caption: "At Seneca One" },
+  { src: "/gallery/g9-IMG_2869.jpg", caption: "Running the session" },
+  { src: "/gallery/g9-IMG_6781.jpg", caption: "Turkey Trot" },
+  { src: "/gallery/g9-IMG_1346.jpg", caption: "Dawn patrol" },
+  { src: "/gallery/g9-IMG_4531.jpg", caption: "Celebration night" },
+  { src: "/gallery/g9-IMG_7326.jpg", caption: "Out with friends" },
+  { src: "/gallery/g9-IMG_6057.jpg", caption: "Buffalo nights" },
+  { src: "/gallery/g9-IMG_5153.jpg", caption: "Trail run" },
+  { src: "/gallery/g10-IMG_4803.jpg", caption: "With the Wanamaker Trophy" },
+  { src: "/gallery/g10-IMG_6468.jpg", caption: "Miller 30 at the arena" },
+  { src: "/gallery/g10-IMG_2593.jpg", caption: "Branding session with the team" },
+  { src: "/gallery/g10-IMG_1222.jpg", caption: "LinkedIn training session" },
+  { src: "/gallery/g10-IMG_5275.jpg", caption: "Reading the green" },
+  { src: "/gallery/g10-IMG_0098.jpg", caption: "Range at sunrise" },
+  { src: "/gallery/g10-IMG_0112.jpg", caption: "Fairway crew" },
+  { src: "/gallery/g10-IMG_0101.jpg", caption: "First tee view" },
+  { src: "/gallery/g10-IMG_0819.jpg", caption: "Run club, winter edition" },
+  { src: "/gallery/g10-IMG_4699.jpg", caption: "Night out" },
+  { src: "/gallery/g11-IMG_0944.jpg", caption: "Running past Parliament, London" },
+  { src: "/gallery/g11-IMG_4585.jpg", caption: "On the judging panel" },
+  { src: "/gallery/g11-IMG_5005.jpg", caption: "PGA WNY team" },
+  { src: "/gallery/g11-IMG_4331.jpg", caption: "Buffalo, always" },
+  { src: "/gallery/g11-IMG_3244.jpg", caption: "Fall foursome" },
+  { src: "/gallery/g11-IMG_8179.jpg", caption: "Golf with family" },
+  { src: "/gallery/g11-IMG_7073.jpg", caption: "Snowy miles with the crew" },
+  { src: "/gallery/g11-boys-night.jpg", caption: "Boys' night" },
+  { src: "/gallery/g11-IMG_2510.jpg", caption: "Catching up" },
+  { src: "/gallery/g12-IMG_4085.jpg", caption: "Buffalo Business First honoree" },
+  { src: "/gallery/g12-IMG_5729.jpg", caption: "EMYOC awards night" },
+  { src: "/gallery/g12-IMG_5722.jpg", caption: "Awards dinner" },
+  { src: "/gallery/g12-IMG_8871.jpg", caption: "Charity outing" },
+  { src: "/gallery/g12-IMG_3506.jpg", caption: "Sunset foursome" },
+  { src: "/gallery/g12-IMG_6188.jpg", caption: "Golden hour golf" },
+  { src: "/gallery/g12-IMG_2911.jpg", caption: "Rain or shine" },
+  { src: "/gallery/g12-IMG_8185.jpg", caption: "Blue skies, good company" },
+  { src: "/gallery/g12-IMG_4131.jpg", caption: "Fairway friends" },
+  { src: "/gallery/g12-IMG_3789.jpg", caption: "Night miles" },
+  { src: "/gallery/g13-pga-hope-reach.jpg", caption: "PGA HOPE & REACH night" },
+  { src: "/gallery/g13-IMG_5043.jpg", caption: "Taking the mic" },
+  { src: "/gallery/g13-IMG_6410.jpg", caption: "With the students" },
+  { src: "/gallery/g13-IMG_2387.jpg", caption: "Frozen beard, finished" },
+  { src: "/gallery/g13-IMG_0483.jpg", caption: "Foursome at the flag" },
+  { src: "/gallery/g13-IMG_7581.jpg", caption: "Cart path crew" },
+  { src: "/gallery/g13-IMG_1320.jpg", caption: "Winter night run" },
+  { src: "/gallery/g13-IMG_2577.jpg", caption: "Snow run" },
+  { src: "/gallery/g14-hockey-1998.jpg", caption: "Hockey days, 1998" },
+  { src: "/gallery/g14-IMG_9822.jpg", caption: "68 miles in, 24-hour run" },
+  { src: "/gallery/g14-IMG_4832.jpg", caption: "Mind the Miles, 24-hour run" },
+  { src: "/gallery/g14-IMG_3993.jpg", caption: "Miles with a friend" },
+  { src: "/gallery/g14-IMG_4751.jpg", caption: "Gym crew" },
+  { src: "/gallery/g14-IMG_7089.jpg", caption: "Trap bar, loaded" },
+  { src: "/gallery/g14-IMG_1234.jpg", caption: "Winter ride" },
+  { src: "/gallery/g14-IMG_9776.jpg", caption: "Night miles, fueled" },
+  { src: "/gallery/g14-IMG_3068.jpg", caption: "The grind" },
+  { src: "/gallery/g15-IMG_2374.jpg", caption: "$14K for PGA REACH WNY" },
+  { src: "/gallery/g15-banq1.jpg", caption: "Early days banquet" },
+  { src: "/gallery/g15-IMG_9576.jpg", caption: "OnCore Golf" },
+  { src: "/gallery/g15-IMG_3083.jpg", caption: "Sabres night" },
+  { src: "/gallery/g15-IMG_5538.jpg", caption: "Frozen solid" },
+  { src: "/gallery/g15-IMG_2448.jpg", caption: "Rucking the waterfront" },
+  { src: "/gallery/g15-IMG_4340.jpg", caption: "In the booth" },
+  { src: "/gallery/g15-IMG_6263.jpg", caption: "The crew, illustrated" },
+  { src: "/gallery/g15-IMG_6091.jpg", caption: "Golf outing crew" },
+  { src: "/gallery/g15-IMG_3636.jpg", caption: "Good round" },
+  { src: "/gallery/g15-IMG_8615.jpg", caption: "Foggy morning swing" },
+  { src: "/gallery/g15-spike.jpg", caption: "The spike" },
+  { src: "/gallery/g15-IMG_5896.jpg", caption: "Gym session" },
+  { src: "/gallery/g15-IMG_1561.jpg", caption: "Cold plunge" },
+  { src: "/gallery/g15-IMG_7046.jpg", caption: "Winter sunrise" },
+  { src: "/gallery/g15-IMG_9431.jpg", caption: "Summer miles" },
+  { src: "/gallery/g15-IMG_1599.jpg", caption: "Rainy run" },
+  { src: "/gallery/g15-IMG_3288.jpg", caption: "Never too serious" },
+  { src: "/gallery/g15-IMG_4533.jpg", caption: "With the guys" },
+  { src: "/gallery/g15-IMG_9672.jpg", caption: "Heads-down work session" },
+  { src: "/gallery/g16-IMG_2238.jpg", caption: "Bills gameday" },
+  { src: "/gallery/g16-IMG_1895.jpg", caption: "Buffalo Golf Classic" },
+  { src: "/gallery/g16-IMG_5369.jpg", caption: "Clubhouse four" },
+  { src: "/gallery/g16-IMG_8741.jpg", caption: "The whole crew" },
+  { src: "/gallery/g16-IMG_1689.jpg", caption: "Tee shot" },
+  { src: "/gallery/g16-IMG_3538.jpg", caption: "Played through the storm" },
+  { src: "/gallery/g16-thumb_v8_clean.jpg", caption: "Bigger Than Sports" },
+  { src: "/gallery/g16-IMG_2908.jpg", caption: "Night golf" },
+  { src: "/gallery/g16-IMG_3876.jpg", caption: "Office visit" },
+  { src: "/gallery/g16-IMG_3932.jpg", caption: "Coffee and business" },
+  { src: "/gallery/g17-IMG_0258.jpg", caption: "Brandlete talk: Wins & Losses" },
+  { src: "/gallery/g17-IMG_4761.jpg", caption: "With the next generation" },
+  { src: "/gallery/g17-IMG_4599.jpg", caption: "Gameday at Highmark" },
+  { src: "/gallery/g17-IMG_4527.jpg", caption: "Bills night at Highmark" },
+  { src: "/gallery/g17-IMG_4726.jpg", caption: "Bills family night" },
+  { src: "/gallery/g17-IMG_4225.jpg", caption: "Tournament day" },
+  { src: "/gallery/g17-IMG_4244.jpg", caption: "Golf with the crew" },
+  { src: "/gallery/g17-IMG_1570.jpg", caption: "Lakeside round" },
+  { src: "/gallery/g18-IMG_1306.jpg", caption: "Sunset putt" },
+  { src: "/gallery/g18-IMG_4009.jpg", caption: "OnCore Golf crew" },
+  { src: "/gallery/g18-IMG_3394.jpg", caption: "Good company at the course" },
+  { src: "/gallery/g18-IMG_5984.jpg", caption: "Winter run with the crew" },
+  { src: "/gallery/g19-IMG_8494.jpg", caption: "At the gala" },
+  { src: "/gallery/g19-IMG_3530.jpg", caption: "Sabres game night" },
+  { src: "/gallery/g20-IMG_9967.jpg", caption: "U.S. Doubles Golf, with Jack Nicklaus" },
+  { src: "/gallery/g20-IMG_5289.jpg", caption: "Flag on the fairway" },
+  { src: "/gallery/g20-IMG_9727.jpg", caption: "Stars and stripes" },
+  { src: "/gallery/g20-IMG_3662.jpg", caption: "PGA HOPE, Team USA" },
+  { src: "/gallery/g20-IMG_4830.jpg", caption: "Range clinic at dusk" },
+  { src: "/gallery/g20-IMG_9988.jpg", caption: "Reading the green" },
+  { src: "/gallery/g20-IMG_1937.jpg", caption: "Winter run, Grand Island bridge" },
+  { src: "/gallery/g20-IMG_8804.jpg", caption: "Night run, City Hall" },
+  { src: "/gallery/g20-IMG_1110.jpg", caption: "Trainer session" },
+  { src: "/gallery/g20-IMG_1970.jpg", caption: "Geared up to ride" },
+  { src: "/gallery/g20-IMG_4764.jpg", caption: "Spring golf with the crew" },
+  { src: "/gallery/g20-IMG_6125.jpg", caption: "Fall round by the lake" },
+  { src: "/gallery/g20-IMG_6815.jpg", caption: "On the podcast" },
+  { src: "/gallery/g21-IMG_8125.jpg", caption: "Junior on the range" },
+  { src: "/gallery/g21-IMG_0471.jpg", caption: "PGA HOPE, rain or shine" },
+  { src: "/gallery/g21-IMG_1219.jpg", caption: "Foursome under the flag" },
+  { src: "/gallery/g21-IMG_1542.jpg", caption: "Golf with good people" },
+  { src: "/gallery/g21-IMG_1959.jpg", caption: "Junior golf camp" },
+  { src: "/gallery/g22-IMG_4848.jpg", caption: "With the Alliance Advisory Group team" },
+  { src: "/gallery/g22-IMG_2430.jpg", caption: "Cohort roundtable" },
+  { src: "/gallery/g22-IMG_5224.jpg", caption: "Evening at the club" },
+  { src: "/gallery/g22-IMG_0478.jpg", caption: "Weekend run crew" },
+  { src: "/gallery/g22-IMG_0387.jpg", caption: "Glow run" },
+  { src: "/gallery/g23-IMG_2637.jpg", caption: "The foursome at the club" },
+  { src: "/gallery/g23-IMG_2953.jpg", caption: "Calling the line" },
+  { src: "/gallery/g23-IMG_6105.jpg", caption: "Tackle What's Next, launch night" },
+  { src: "/gallery/g23-IMG_7050.jpg", caption: "Buffalo Startup Week panel" },
+  { src: "/gallery/g23-IMG_6645.jpg", caption: "Winter run, two up" },
+  { src: "/gallery/g23-IMG_5329.jpg", caption: "Headlamp miles" },
+  { src: "/gallery/g23-IMG_1922.jpg", caption: "Thumbs up on the call" },
+  { src: "/gallery/g24-IMG_2021.jpg", caption: "Evening round, three up" },
+  { src: "/gallery/g24-IMG_3894.jpg", caption: "Night out with the crew" },
+  { src: "/gallery/g24-RenderedImage.jpg", caption: "Good company downtown" },
+  { src: "/gallery/g24-IMG_2352.jpg", caption: "Frosted over, still running" },
+  { src: "/gallery/g24-IMG_2519.jpg", caption: "In the podcast studio" },
+  { src: "/gallery/g24-IMG_6118.jpg", caption: "Lakeside foursome" },
+  { src: "/gallery/g24-IMG_6148.jpg", caption: "Winter run past the bison" },
+  { src: "/gallery/b136479-IMG_4862.jpg", caption: "Sunset at Harvest Hill" },
+  { src: "/gallery/b136479-IMG_5248.jpg", caption: "Twilight round at the club" },
+  { src: "/gallery/b136479-RenderedImage.jpg", caption: "Night game at Highmark" },
+  { src: "/gallery/b136479-IMG_4122.jpg", caption: "Out with good people" },
+  { src: "/gallery/b136479-IMG_0637.jpg", caption: "Frozen miles, headlamp on" },
+  { src: "/gallery/g25-IMG_2407.jpg", caption: "The whole group at the turn" },
+  { src: "/gallery/g25-IMG_5475.jpg", caption: "Sunshine round" },
+  { src: "/gallery/g25-IMG_0740.jpg", caption: "Back nine with good company" },
+  { src: "/gallery/g25-IMG_6149.jpg", caption: "Twilight nine with the crew" },
+  { src: "/gallery/g25-IMG_4102.jpg", caption: "Number one in the office" },
+  { src: "/gallery/g25-IMG_1558.jpg", caption: "A hole worth the walk" },
+  { src: "/gallery/g25-IMG_8383.jpg", caption: "Hockey championship, trophy in hand" },
+  { src: "/gallery/g25-IMG_6909.jpg", caption: "Snow miles, headlamp on" },
+  { src: "/gallery/g25-IMG_6340.jpg", caption: "Commercial strategy session" },
+  { src: "/gallery/g25-IMG_6322.jpg", caption: "Planning day with the team" },
+  { src: "/gallery/g25-IMG_5552.jpg", caption: "Three up at the pin" },
+  { src: "/gallery/g25-IMG_4707.jpg", caption: "Bills gameday crew" },
+  { src: "/gallery/g25-IMG_4231.jpg", caption: "Foursome, Bills hat on" },
+];
+
+// Civic categories — drive the filterable civic logo wall, same pattern as the
+// partnership SECTORS above.
+export type CivicCategory =
+  | "Entrepreneurship & Startups"
+  | "Higher Ed & Mentorship"
+  | "Sports & Golf"
+  | "Health & Recovery"
+  | "Community & Nonprofit";
+
+export const CIVIC_CATEGORIES: { name: CivicCategory; color: string }[] = [
+  { name: "Entrepreneurship & Startups", color: "#f5c518" },
+  { name: "Higher Ed & Mentorship", color: "#7c4dff" },
+  { name: "Sports & Golf", color: "#16a34a" },
+  { name: "Health & Recovery", color: "#ef4444" },
+  { name: "Community & Nonprofit", color: "#f59e0b" },
+];
+
+export type Civic = { org: string; role: string; logo: string; mark: string; accent: string; url: string; category: CivicCategory };
+
+// John's civic leadership & volunteer roles. logo "" falls back to a monogram.
+export const civic: Civic[] = [
+  { org: "Ron Langhorne Golf Foundation", role: "Board Member", logo: "/logos/rlg.png", mark: "RLG", accent: "#166534", url: "https://www.imjustagolfer.com/rlg-foundation", category: "Sports & Golf" },
+  { org: "Compeer of Greater Buffalo", role: "Advisor / Connector", logo: logoDev("compeerbuffalo.org"), mark: "Cp", accent: "#0d9488", url: "https://compeerbuffalo.org", category: "Health & Recovery" },
+  { org: "Techstars", role: "Community Organizer & Program Contributor", logo: logoDev("techstars.com"), mark: "T", accent: "#1f1f1f", url: "https://www.techstars.com", category: "Entrepreneurship & Startups" },
+  { org: "Police Athletic League", role: "Youth Golf Coach", logo: logoDev("nationalpal.org"), mark: "PAL", accent: "#1e3a8a", url: "https://www.nationalpal.org", category: "Sports & Golf" },
+  { org: "PGA of America REACH Foundation", role: "Board of Trustees & Advisor", logo: "/logos/pga-reach-foundation.png", mark: "PGA", accent: "#0a2240", url: "https://westernnewyork.pga.com", category: "Sports & Golf" },
+  { org: "EforAll", role: "Lead Mentor, Buffalo NY Cohort", logo: logoDev("eforall.org"), mark: "Ef", accent: "#2bb3a3", url: "https://eforall.org", category: "Entrepreneurship & Startups" },
+  { org: "OnCore Golf", role: "Fundraising Director", logo: logoDev("oncoregolf.com"), mark: "OC", accent: "#111827", url: "https://www.oncoregolf.com", category: "Sports & Golf" },
+  { org: "University at Buffalo", role: "Expert in Residence, LaunchPad · Finals Judge, Student Pitches (CoLab · Blackstone) · Mentor & Finals Judge, Student 2 Biz (School of Management)", logo: logoDev("buffalo.edu"), mark: "UB", accent: "#005bbb", url: "https://www.buffalo.edu", category: "Higher Ed & Mentorship" },
+  { org: "dooProcess", role: "Community Champion & Mentor", logo: "/logos/civ-dooprocess.png", mark: "DP", accent: "#6d28d9", url: "https://www.dooprocess.org", category: "Entrepreneurship & Startups" },
+  { org: "Buffalo Startup Week", role: "Featured Speaker, Social Media", logo: "/logos/civ-buffalo-startup-week.png", mark: "BSW", accent: "#f59e0b", url: "https://www.buffalo.edu/partnerships/landing-pages/startup-week.html", category: "Entrepreneurship & Startups" },
+  { org: "Heritage Christian Services", role: "Chairperson, Heritage HERO 5K & Annual Foundation Fundraiser", logo: "/logos/heritagechristian.png", mark: "HC", accent: "#0e7490", url: "https://heritagechristianservices.org/", category: "Community & Nonprofit" },
+  { org: "Niagara Global Tourism Institute", role: "Community Advocate, TReC", logo: "/logos/civ-niagara-global.png", mark: "NG", accent: "#0891b2", url: "https://www.google.com/search?q=Niagara%20Global%20Tourism%20Institute", category: "Community & Nonprofit" },
+  { org: "First Tee", role: "Youth Golf Coach", logo: "/logos/firsttee.png", mark: "FT", accent: "#16a34a", url: "https://firsttee.org", category: "Sports & Golf" },
+  { org: "POWER of OZmosis", role: "Mentor · Connector · Fundraiser", logo: logoDev("powerofozmosis.com"), mark: "OZ", accent: "#1d4ed8", url: "https://www.powerofozmosis.com", category: "Entrepreneurship & Startups" },
+  { org: "NAACP", role: "Member, Buffalo NY Chapter", logo: logoDev("naacp.org"), mark: "NA", accent: "#111827", url: "https://naacp.org", category: "Community & Nonprofit" },
+  { org: "Recovery Options Made Easy", role: "5x4x24 Challenge Fundraiser", logo: "/logos/civ-recovery-options.png", mark: "RO", accent: "#dc2626", url: "https://www.recoveryoptions.org", category: "Health & Recovery" },
+  { org: "People Inc.", role: "Mentor", logo: logoDev("people-inc.org"), mark: "PI", accent: "#16a34a", url: "https://www.people-inc.org", category: "Community & Nonprofit" },
+  { org: "Team F.A.S.T.", role: "Board Member", logo: logoDev("teamfastfoundation.com"), mark: "TF", accent: "#1d4ed8", url: "https://teamfastfoundation.com", category: "Health & Recovery" },
+  { org: "Niagara University", role: "Featured Speaker & Careers Connector · Business Competition Finals Judge (Marketing Assn.)", logo: "/logos/brands/niagara-edu.png", mark: "NU", accent: "#5b2a86", url: "https://www.niagara.edu", category: "Higher Ed & Mentorship" },
+  { org: "Accessible Academics", role: "Mentor", logo: "/logos/civ-accessible-academics.png", mark: "AA", accent: "#b45309", url: "https://www.google.com/search?q=Accessible%20Academics", category: "Higher Ed & Mentorship" },
+  { org: "F BITES", role: "Community Champion", logo: "/logos/civ-fbites.png", mark: "FB", accent: "#65a30d", url: "https://www.google.com/search?q=F%20BITES%20Buffalo", category: "Community & Nonprofit" },
+  { org: "CALLSIGN 22", role: "5x4x48 Challenge Fundraiser", logo: "/logos/civ-callsign22.png", mark: "C22", accent: "#475569", url: "https://www.google.com/search?q=CALLSIGN%2022%20veteran%20fundraiser", category: "Health & Recovery" },
+  { org: "The Essential Machine", role: "Mentor to Founder", logo: "/logos/civ-essential-machine.png", mark: "EM", accent: "#0ea5e9", url: "https://www.google.com/search?q=The%20Essential%20Machine%20startup", category: "Entrepreneurship & Startups" },
+  { org: "NYBPC", role: "Regional Finals Judge", logo: logoDev("nybpc.org"), mark: "NY", accent: "#1f7a3f", url: "https://nybpc.org", category: "Higher Ed & Mentorship" },
+  { org: "vidwheel", role: "Podcast Host & Featured Speaker", logo: logoDev("vidwheel.com"), mark: "VW", accent: "#16a34a", url: "https://vidwheel.com", category: "Entrepreneurship & Startups" },
+  { org: "American University", role: "Featured Speaker", logo: logoDev("american.edu"), mark: "AU", accent: "#b91c1c", url: "https://www.american.edu", category: "Higher Ed & Mentorship" },
+  { org: "Trocaire College", role: "Featured Speaker", logo: logoDev("trocaire.edu"), mark: "TC", accent: "#7f1d1d", url: "https://www.trocaire.edu", category: "Higher Ed & Mentorship" },
+  { org: "American Lung Association", role: "Fight for Air Climb Fundraiser", logo: logoDev("lung.org"), mark: "AL", accent: "#2563eb", url: "https://www.lung.org", category: "Health & Recovery" },
+  { org: "InfoTech WNY", role: "Board Member & Co-Director, Networking", logo: "/logos/civ-infotech-wny.png", mark: "IT", accent: "#0d9488", url: "https://infotechwny.com/", category: "Entrepreneurship & Startups" },
+  { org: "Buffalo Niagara Partnership", role: "Featured Speaker, BN360", logo: logoDev("thepartnership.org"), mark: "BN", accent: "#1d4ed8", url: "https://www.thepartnership.org", category: "Entrepreneurship & Startups" },
+  { org: "Cystic Fibrosis Foundation", role: "Rising Star Selection", logo: logoDev("cff.org"), mark: "CF", accent: "#2563eb", url: "https://www.cff.org", category: "Health & Recovery" },
+  { org: "Special Olympics", role: "Event Volunteer, Fire Truck Pull", logo: logoDev("specialolympics.org"), mark: "SO", accent: "#e0301e", url: "https://www.specialolympics.org", category: "Sports & Golf" },
+  { org: "United Way of Buffalo & Erie County", role: "Student Liaison", logo: logoDev("uwbec.org"), mark: "UW", accent: "#e0301e", url: "https://www.uwbec.org", category: "Community & Nonprofit" },
+  { org: "Jericho Road Community Health Center", role: "Volunteer, Vive La Casa", logo: logoDev("jrchc.org"), mark: "JR", accent: "#ea580c", url: "https://jrchc.org", category: "Health & Recovery" },
+  { org: "Tee It Up For The Troops", role: "Charity Golf Fundraiser", logo: logoDev("teeitupforthetroops.org"), mark: "TT", accent: "#1d4ed8", url: "https://www.teeitupforthetroops.org", category: "Sports & Golf" },
+];

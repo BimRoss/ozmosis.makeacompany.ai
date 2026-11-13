@@ -1,0 +1,528 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f4f7fb;
+  --fg: #0b1220;
+  --muted: #475569;
+  /* Brandlete blue — the single brand accent used across the site. */
+  --brand: #f5c518;
+  --brand-deep: #1b3b6f;
+  /* Light editorial canvas. Content below the hero now sits directly on this
+     surface (the photo only covers the hero), so in light mode it must be light
+     for the dark body text to read. Also the iOS bottom-strip fill color. */
+  --backdrop-base: #eef2f7;
+}
+
+.dark {
+  --bg: #05070d;
+  --fg: #f2f6fb;
+  /* John: no grey body text in dark mode — muted reads bright white. */
+  --muted: #ffffff;
+  --brand: #f5c518;
+  --brand-deep: #22a3d6;
+  --backdrop-base: #04070e;
+}
+
+@theme inline {
+  --font-sans: var(--font-ibm-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background-color: var(--backdrop-base);
+  color: var(--fg);
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--backdrop-base);
+  color: var(--muted);
+  font-family: var(--font-ibm-plex), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Film grain overlay */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Fixed editorial canvas — a stable deep surface behind the whole page.
+   iOS note: anchored to the top and sized to 100lvh so the toolbar-retract
+   strip at the bottom of a long page is always painted, never a black band. */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(0, 136, 204, 0.06), transparent 60%),
+    var(--backdrop-base);
+}
+.dark .backdrop {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(0, 204, 255, 0.08), transparent 60%),
+    var(--backdrop-base);
+}
+
+/* Hero atmosphere — absolutely positioned at the document top so the sports
+   photo scrolls away with the hero instead of pinning to the viewport. Below
+   the hero, content sits on the calm fixed canvas above. */
+.hero-atmos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 94vh;
+  height: 94lvh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-atmos-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 24%;
+  transition: opacity 0.5s ease;
+  /* The photo is atmosphere, not content. A soft blur dissolves the faces and
+     chairs into a clean backdrop so the wordmark and buttons own the hero. The
+     1.05–1.13 scale animation keeps the blurred edges off-frame. */
+  filter: blur(1px);
+  /* Fade the photo into the canvas a touch higher so the lower hero (buttons,
+     creed band) sits on the calm surface, crisp. */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 92%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 92%);
+  /* Slow cinematic drift — a barely-there Ken Burns pan/zoom so the hero photo
+     breathes instead of sitting dead still. Starts already scaled up so the
+     drift never exposes an edge. */
+  animation: hero-pan 32s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hero-pan {
+  from { transform: scale(1.05) translate3d(0, 0, 0); }
+  to { transform: scale(1.13) translate3d(-1.5%, -1.4%, 0); }
+}
+
+.hero-atmos-light {
+  /* OZmosis identity: John speaking to a full room. The practice is coaching,
+     consulting, and speaking, so the hero is a stage, not a golf course.
+     Kept soft so the brand reads first and the room sits behind it. */
+  background-image: url("/hero-oz-light.jpg");
+  background-position: center 30%;
+  opacity: 0.9;
+}
+
+.hero-atmos-dark {
+  /* Navy-graded speaking scene for dark mode. */
+  background-image: url("/hero-oz-dark.jpg");
+  background-position: center 30%;
+  opacity: 0;
+}
+
+.dark .hero-atmos-light {
+  opacity: 0;
+}
+
+.dark .hero-atmos-dark {
+  opacity: 0.95;
+}
+
+/* Legibility scrim over the hero photo — a clean, even wash so the hero text
+   reads crisp. One centered top-down gradient, no off-center blob. */
+.hero-atmos-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(238, 242, 247, 0.42) 0%, rgba(238, 242, 247, 0.4) 46%, rgba(238, 242, 247, 0.72) 82%, var(--backdrop-base) 100%),
+    radial-gradient(90% 68% at 50% 24%, rgba(238, 242, 247, 0.55), transparent 70%);
+}
+
+.dark .hero-atmos-scrim {
+  background:
+    linear-gradient(180deg, rgba(4, 7, 14, 0.5) 0%, rgba(4, 7, 14, 0.42) 42%, rgba(4, 7, 14, 0.82) 82%, var(--backdrop-base) 100%),
+    radial-gradient(85% 60% at 42% 34%, rgba(4, 7, 14, 0.42), transparent 72%);
+}
+
+/* Text over the hero photo band. The photo is now softened into atmosphere and
+   only covers the hero, so a light shadow is enough to keep the hero text crisp
+   without the fuzzy halo that made headings further down look blurry. */
+.on-photo {
+  text-shadow: 0 1px 3px rgba(238, 242, 247, 0.7);
+}
+
+.dark .on-photo {
+  text-shadow: 0 1px 4px rgba(4, 7, 14, 0.8);
+}
+
+/* Hero name — one clean solid brand color with a soft glow halo. Minimal, just
+   enough to lift it off the photo band as the one hero element. */
+.name-hero {
+  color: #1b3b6f;
+  text-shadow: 0 0 10px rgba(0, 136, 204, 0.3), 0 0 22px rgba(0, 136, 204, 0.18);
+}
+.dark .name-hero {
+  color: #f5c518;
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.4), 0 0 26px rgba(0, 204, 255, 0.25);
+}
+
+/* Eyebrow micro-label — quiet, solid, no shimmer. It sits under the name in the
+   hierarchy, so it recedes instead of competing with a second animated blue. */
+.label-shimmer {
+  color: #5a7385;
+}
+.dark .label-shimmer {
+  color: #ffffff;
+}
+
+/* John: any grey text in dark mode should read bright white. The theme-driven
+   greys (--muted, .label-shimmer above) are handled directly; this catches the
+   per-component muted utilities (dark:text-zinc-* and the translucent white
+   labels). Scoped to html.dark so light mode keeps its full hierarchy. */
+html.dark :is(
+  .dark\:text-zinc-100,
+  .dark\:text-zinc-200,
+  .dark\:text-zinc-300,
+  .dark\:text-zinc-400,
+  .dark\:text-zinc-500,
+  .text-white\/70,
+  .text-white\/60,
+  .text-white\/50
+) {
+  color: #ffffff;
+}
+
+/* Scroll-into-view fade, driven by ScrollReveal.
+   Opacity-only on purpose: a vertical translate here shifts whole sections
+   down until they animate up, so mid-scroll the gaps between sections read
+   unevenly (80px at rest vs ~106px while a section is still sliding in).
+   Fading in place keeps every section-to-section gap rock-steady. */
+.reveal-on-scroll {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+}
+
+/* Cascade — direct children of a `.cascade` inside a revealed section flow in
+   one at a time instead of all together, so a section looks like it assembles
+   itself as you reach it. Keyed off the section's `.is-visible`, so it inherits
+   ScrollReveal's failsafe and a child can never get stuck hidden. */
+.reveal-on-scroll .cascade > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal-on-scroll.is-visible .cascade > * {
+  opacity: 1;
+  transform: none;
+}
+.reveal-on-scroll.is-visible .cascade > *:nth-child(1) { transition-delay: 0.06s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(3) { transition-delay: 0.18s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(4) { transition-delay: 0.24s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(5) { transition-delay: 0.30s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(6) { transition-delay: 0.36s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(7) { transition-delay: 0.42s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(8) { transition-delay: 0.48s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(9) { transition-delay: 0.52s; }
+.reveal-on-scroll.is-visible .cascade > *:nth-child(n + 10) { transition-delay: 0.56s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .label-shimmer,
+  .dark .label-shimmer {
+    animation: none;
+  }
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal-on-scroll .cascade > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero-atmos-img {
+    animation: none;
+  }
+}
+
+/* Testimonials marquee */
+@keyframes marquee-l {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-r {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+/* Duration here is only a no-JS fallback — Testimonials.tsx measures each row
+   and overrides it inline so both drift at one identical px/s. Kept equal and
+   slow so even the fallback never looks fast or mismatched. */
+.animate-marquee-l {
+  animation: marquee-l 800s linear infinite;
+}
+.animate-marquee-r {
+  animation: marquee-r 800s linear infinite;
+}
+.animate-marquee-l:hover,
+.animate-marquee-r:hover {
+  animation-play-state: paused;
+}
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+/* Swipeable endorsement rows: hide the scrollbar, keep the scroll. */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-l,
+  .animate-marquee-r {
+    animation: none;
+  }
+}
+
+/* Search button — pulsing brand-cyan ring + flickering bolt so it reads as live */
+@keyframes search-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 204, 255, 0.5); }
+  50% { box-shadow: 0 0 0 9px rgba(0, 204, 255, 0); }
+}
+.search-pulse {
+  animation: search-pulse 2.4s ease-out infinite;
+}
+@keyframes bolt-flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px rgba(0, 204, 255, 0.7)); }
+  50% { transform: scale(1.18) rotate(-5deg); filter: drop-shadow(0 0 6px rgba(0, 204, 255, 0.95)); }
+}
+.bolt-flicker {
+  animation: bolt-flicker 1.8s ease-in-out infinite;
+}
+@keyframes hire-glow {
+  0%, 100% { box-shadow: 0 0 22px 0 rgba(0, 204, 255, 0.28), inset 0 0 0 1px rgba(0, 204, 255, 0.35); }
+  50% { box-shadow: 0 0 40px 6px rgba(0, 204, 255, 0.5), inset 0 0 0 1px rgba(0, 204, 255, 0.65); }
+}
+.hire-glow {
+  animation: hire-glow 3s ease-in-out infinite;
+}
+@keyframes hire-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+.hire-dot {
+  animation: hire-dot 1.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-pulse,
+  .bolt-flicker,
+  .hire-glow,
+  .hire-dot {
+    animation: none;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.reveal-2 {
+  animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.reveal-3 {
+  animation: reveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
+}
+
+/* Small fade-up used when swapping the active card in the career timeline. */
+@keyframes fade-up-sm {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-fade-up {
+  animation: fade-up-sm 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-2,
+  .reveal-3,
+  .anim-fade-up {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ===== Editorial system ===== */
+
+/* Section header: a small brand eyebrow with a short accent rule, so every
+   section opens with the same clear, quiet rhythm. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-ibm-plex), ui-monospace, monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--brand-deep);
+}
+.dark .eyebrow {
+  color: var(--brand);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.6rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--brand), transparent);
+}
+
+/* Accent rule draws itself in when its section scrolls into view — a small,
+   quiet bit of life at the top of every section. Starts collapsed, springs out
+   to full width just after the section's fade-up. */
+.reveal-on-scroll .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+}
+.reveal-on-scroll.is-visible .eyebrow::before {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll .eyebrow::before {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Subtle raised surface for the editorial cards and stat panels. */
+.panel {
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(4, 7, 14, 0.1);
+  backdrop-filter: blur(10px);
+}
+.dark .panel {
+  background: rgba(9, 14, 24, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Uniform proof-strip chip so the badges read as one calm row, not button soup. */
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(4, 7, 14, 0.14);
+  background: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem 0.85rem;
+  font-family: var(--font-ibm-plex), ui-monospace, monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #1f2937;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.proof-chip:hover {
+  border-color: var(--brand);
+  transform: translateY(-1px);
+}
+.dark .proof-chip {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #d5dee8;
+}
+.dark .proof-chip:hover {
+  border-color: var(--brand);
+  color: #fff;
+}
+
+/* Tilt card: a faint light tracks the cursor while the card leans (JS sets
+   --mx/--my/--glow). Overlay only, so it never touches layout or readability.
+   Hover-only and gated in JS on touch + reduced-motion, so most of the time
+   this is invisible. */
+.tilt-card {
+  position: relative;
+  transform-style: preserve-3d;
+}
+.tilt-card > * {
+  position: relative;
+  z-index: 1;
+}
+.tilt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--glow, 0);
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(0, 204, 255, 0.16),
+    transparent 55%
+  );
+  z-index: 2;
+}
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .tilt-card::after {
+    display: none;
+  }
+}

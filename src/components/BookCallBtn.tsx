@@ -1,0 +1,107 @@
+"use client";
+
+import { useRef } from "react";
+
+const COLORS = ["#f5c518", "#ffd84d", "#1b3b6f", "#2563eb", "#ffe9a3", "#ffffff", "#a5f3ff"];
+
+function burst(ox: number, oy: number) {
+  const canvas = document.createElement("canvas");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.cssText =
+    "position:fixed;inset:0;pointer-events:none;z-index:99998;";
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d")!;
+
+  const particles = Array.from({ length: 90 }, () => ({
+    x: ox,
+    y: oy,
+    vx: (Math.random() - 0.5) * 14,
+    vy: -(Math.random() * 14 + 3),
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    w: Math.random() * 7 + 3,
+    h: Math.random() * 4 + 2,
+    rot: Math.random() * Math.PI * 2,
+    rotV: (Math.random() - 0.5) * 0.25,
+    life: 1,
+  }));
+
+  let raf: number;
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let alive = false;
+    for (const p of particles) {
+      p.vy += 0.4;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotV;
+      p.life -= 0.013;
+      if (p.life <= 0) continue;
+      alive = true;
+      ctx.save();
+      ctx.globalAlpha = p.life;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    if (alive) raf = requestAnimationFrame(tick);
+    else { cancelAnimationFrame(raf); canvas.remove(); }
+  }
+  raf = requestAnimationFrame(tick);
+}
+
+function magnetOk() {
+  if (typeof window === "undefined") return false;
+  if (window.matchMedia("(pointer: coarse)").matches) return false;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+  return true;
+}
+
+export default function BookCallBtn() {
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  function handleClick() {
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    burst(r.left + r.width / 2, r.top + r.height / 2);
+  }
+
+  // Magnetic pull: the button eases a few pixels toward the cursor as it nears,
+  // then springs back on leave. Desktop + motion-allowed only.
+  function onMove(e: React.MouseEvent<HTMLAnchorElement>) {
+    const el = ref.current;
+    if (!el || !magnetOk()) return;
+    const r = el.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2);
+    const dy = e.clientY - (r.top + r.height / 2);
+    el.style.transition = "transform 0.1s ease-out";
+    el.style.transform = `translate(${dx * 0.28}px, ${dy * 0.28}px)`;
+  }
+
+  function onLeave() {
+    const el = ref.current;
+    if (!el) return;
+    el.style.transition = "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)";
+    el.style.transform = "";
+  }
+
+  return (
+    <a
+      ref={ref}
+      href="https://calendar.app.google/it2a6tTGWkWcupGg6"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={handleClick}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="group inline-flex items-center gap-2 rounded-sm bg-[#f5c518] px-6 py-3 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-[#04070e] shadow-lg shadow-[#f5c518]/30 transition-colors hover:bg-[#ffd84d]"
+      style={{ willChange: "transform" }}
+    >
+      <span aria-hidden>⚡</span>
+      Let&apos;s Connect!
+      <span className="transition-transform group-hover:translate-x-0.5">↗</span>
+    </a>
+  );
+}
